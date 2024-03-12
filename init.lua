@@ -233,7 +233,30 @@ require('lazy').setup({
   --
   --  This is equivalent to:
   --    require('Comment').setup({})
-
+  -- Copilot
+  {
+    'zbirenbaum/copilot.lua',
+    opts = {},
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup {
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = '<M-l>',
+            accept_word = false,
+            accept_line = false,
+            next = '<M-]>',
+            prev = '<M-[>',
+            dismiss = '<C-]>',
+          },
+        },
+      }
+    end,
+  },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
@@ -256,15 +279,42 @@ require('lazy').setup({
   },
   -- File explorer type thing
   {
-    'nvim-tree/nvim-tree.lua',
-    version = '*',
-    lazy = false,
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+  },
+
+  {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
     config = function()
-      require('nvim-tree').setup {}
+      local logo = [[	     /\__\         /\  \         /\  \         /\__\          ___        /\__\     
+	    /::|  |       /::\  \       /::\  \       /:/  /         /\  \      /::|  |    
+	   /:|:|  |      /:/\:\  \     /:/\:\  \     /:/  /          \:\  \    /:|:|  |    
+	  /:/|:|  |__   /::\~\:\  \   /:/  \:\  \   /:/__/  ___      /::\__\  /:/|:|__|__  
+	 /:/ |:| /\__\ /:/\:\ \:\__\ /:/__/ \:\__\  |:|  | /\__\  __/:/\/__/ /:/ |::::\__\ 
+	 \/__|:|/:/  / \:\~\:\ \/__/ \:\  \ /:/  /  |:|  |/:/  / /\/:/  /    \/__/~~/:/  / 
+	     |:/:/  /   \:\ \:\__\    \:\  /:/  /   |:|__/:/  /  \::/__/           /:/  /  
+	     |::/  /     \:\ \/__/     \:\/:/  /     \::::/__/    \:\__\          /:/  /   
+	     /:/  /       \:\__\        \::/  /       ~~~~         \/__/         /:/  /    
+	     \/__/         \/__/         \/__/                                   \/__/     
+	                                                                                   
+      ]]
+
+      logo = string.rep('\n', 8) .. logo .. '\n\n'
+
+      require('dashboard').setup {
+        config = {
+          header = vim.split(logo, '\n'),
+        },
+      }
     end,
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
   },
 
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
@@ -815,7 +865,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.indent_line',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
