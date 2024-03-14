@@ -287,30 +287,41 @@ require('lazy').setup({
       'MunifTanjim/nui.nvim',
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+    config = function()
+      require('neo-tree').setup {
+        filesystem = {
+          hijack_netrw_behavior = 'open_default',
+        },
+      }
+    end,
   },
 
   {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
-      local logo = [[	     /\__\         /\  \         /\  \         /\__\          ___        /\__\     
-	    /::|  |       /::\  \       /::\  \       /:/  /         /\  \      /::|  |    
-	   /:|:|  |      /:/\:\  \     /:/\:\  \     /:/  /          \:\  \    /:|:|  |    
-	  /:/|:|  |__   /::\~\:\  \   /:/  \:\  \   /:/__/  ___      /::\__\  /:/|:|__|__  
-	 /:/ |:| /\__\ /:/\:\ \:\__\ /:/__/ \:\__\  |:|  | /\__\  __/:/\/__/ /:/ |::::\__\ 
-	 \/__|:|/:/  / \:\~\:\ \/__/ \:\  \ /:/  /  |:|  |/:/  / /\/:/  /    \/__/~~/:/  / 
-	     |:/:/  /   \:\ \:\__\    \:\  /:/  /   |:|__/:/  /  \::/__/           /:/  /  
-	     |::/  /     \:\ \/__/     \:\/:/  /     \::::/__/    \:\__\          /:/  /   
-	     /:/  /       \:\__\        \::/  /       ~~~~         \/__/         /:/  /    
-	     \/__/         \/__/         \/__/                                   \/__/     
-	                                                                                   
-      ]]
+      local logo = {
+        [[                                                                     ]],
+        [[       ████ ██████           █████      ██                     ]],
+        [[      ███████████             █████                             ]],
+        [[      █████████ ███████████████████ ███   ███████████   ]],
+        [[     █████████  ███    █████████████ █████ ██████████████   ]],
+        [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+        [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+        [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+      }
 
-      logo = string.rep('\n', 8) .. logo .. '\n\n'
+      LogoToStr = function()
+        local result = ''
+        for _, line in ipairs(logo) do
+          result = result .. line .. '\n'
+        end
+        return result
+      end
 
       require('dashboard').setup {
         config = {
-          header = vim.split(logo, '\n'),
+          header = vim.split(LogoToStr(), '\n'),
         },
       }
     end,
