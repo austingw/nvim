@@ -22,4 +22,6 @@ return {
       },
     },
   },
+  --GOTTA be able to see that diff
+  { 'sindrets/diffview.nvim' },
 }
