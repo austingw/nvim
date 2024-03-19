@@ -1,6 +1,5 @@
 return {
-  -- File explorer type thing
-  {
+  { --File explorer
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
     dependencies = {
@@ -17,8 +16,7 @@ return {
       }
     end,
   },
-
-  {
+  { --Dashboard setup that I will barely use
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
@@ -49,22 +47,6 @@ return {
     end,
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
   },
-
-  -- NOTE: Plugins can also be configured to run lua code when they are loaded.
-  --
-  -- This is often very useful to both group configuration, as well as handle
-  -- lazy loading plugins that don't need to be loaded immediately at startup.
-  --
-  -- For example, in the following configuration, we use:
-  --  event = 'VimEnter'
-  --
-  -- which loads which-key before all the UI elements are loaded. Events can be
-  -- normal autocommands events (`:help autocmd-events`).
-  --
-  -- Then, because we use the `config` key, the configuration only runs
-  -- after the plugin has been loaded:
-  --  config = function() ... end
-
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -81,8 +63,16 @@ return {
       }
     end,
   },
-
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', opts = {} },
-  -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { --Shows buffers in a tab like view
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {},
+  },
+  { -- Highlight todo, notes, etc in comments
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
 }
