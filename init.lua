@@ -8,7 +8,7 @@
     \|__|\|__|\|_______|\_________\   \|__|  \|__|\|__| \|__|\|_______|\|____________|
                        \|_________|                                                   
 
-This is my personal Neovim configuration, based on kickstart.vim <3
+This is my personal Neovim configuration, based on kickstart.nvim <3
 --]]
 
 -- [[ Basic Setup ]]
