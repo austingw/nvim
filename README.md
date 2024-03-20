@@ -1,14 +1,8 @@
-# kickstart.nvim
+# swag.nvim
 
 ## Introduction
 
-A starting point for Neovim that is:
-
-* Small
-* Single-file
-* Completely Documented
-
-**NOT** a Neovim distribution, but instead a starting point for your configuration.
+My personal neovim config. I started with kickstart.nvim and then moved config/plugins to seperate files 😎
 
 ## Installation
 
