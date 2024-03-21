@@ -67,7 +67,23 @@ return {
     'akinsho/bufferline.nvim',
     version = '*',
     dependencies = 'nvim-tree/nvim-web-devicons',
-    opts = {},
+    opts = {
+      options = {
+        always_show_bufferline = false,
+        numbers = 'buffer_id',
+        offsets = {
+          {
+            filetype = 'neo-tree',
+            text = 'Neo-tree',
+            highlight = 'Directory',
+            text_align = 'left',
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      require('bufferline').setup(opts)
+    end,
   },
   { -- Highlight todo, notes, etc in comments
     'folke/todo-comments.nvim',
