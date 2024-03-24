@@ -19,8 +19,9 @@ return {
   { --Dashboard setup that I will barely use
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
-    config = function()
+    opts = function()
       local logo = {
+        [[                                                                       ]],
         [[                                                                     ]],
         [[       ████ ██████           █████      ██                     ]],
         [[      ███████████             █████                             ]],
@@ -39,11 +40,29 @@ return {
         return result
       end
 
-      require('dashboard').setup {
+      local opts = {
+        theme = 'hyper',
+        hide = {
+          statusline = false,
+        },
         config = {
           header = vim.split(LogoToStr(), '\n'),
+          -- stylua: ignore
+          shortcut = {
+            { desc = "💤 Lazy",  key = "l", action = "Lazy", },
+            { desc = '🔭 Telescope', key = 't', action = 'Telescope' },
+            { desc = '🍃 Quit', key = 'q', action = 'quit' },
+          },
+          packages = { enable = false },
+          footer = function()
+            local stats = require('lazy').stats()
+            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+            return { '', '⚡ Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms' }
+          end,
         },
       }
+
+      return opts
     end,
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
   },
