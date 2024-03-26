@@ -22,7 +22,7 @@ require 'swag.config.options'
 -- [[ Keymaps ]]
 require 'swag.config.keymaps'
 
--- [[ Basic Autocommands ]]
+-- [[ Autocommands ]]
 require 'swag.config.autocmds'
 
 -- [[ Plugins ]]
