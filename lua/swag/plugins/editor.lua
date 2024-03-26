@@ -1,6 +1,5 @@
 return {
-  -- Copilot
-  {
+  { -- Copilot
     'zbirenbaum/copilot.lua',
     opts = {},
     cmd = 'Copilot',
@@ -23,9 +22,7 @@ return {
       }
     end,
   },
-  -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -130,7 +127,6 @@ return {
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-
   { -- Autoformat
     'stevearc/conform.nvim',
     opts = {
@@ -150,7 +146,6 @@ return {
       },
     },
   },
-
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -243,7 +238,6 @@ return {
       }
     end,
   },
-
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -267,6 +261,5 @@ return {
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
-
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 }
